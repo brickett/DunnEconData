@@ -17,7 +17,7 @@ wages <- subset(wages, wages$INCWAGE != 9999999)
 wages$ADJINCWAGE <- wages$CPI99*wages$INCWAGE*1.43 #adjusts to 2015 dollars
 wages <- subset(wages, wages$EMPSTAT == 10 | wages$EMPSTAT ==11)
 
-wage_percentile <- aggregate(INCWAGE ~ YEAR, data = wages2, FUN = wtd.quantile, weights = wages2$ASECWT, probs = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9))
+wage_percentile <- aggregate(INCWAGE ~ YEAR, data = wages, FUN = wtd.quantile, weights = wages2$ASECWT, probs = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9))
 
 wage_percentile <- cbind(wage_percentile[-ncol(wage_percentile)], wage_percentile[[ncol(wage_percentile)]])
 
